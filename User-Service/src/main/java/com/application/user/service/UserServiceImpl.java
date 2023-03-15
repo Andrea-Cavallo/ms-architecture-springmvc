@@ -11,7 +11,7 @@ import com.application.user.controller.dto.response.UserDTO;
 import com.application.user.controller.exception.InvalidEmailException;
 import com.application.user.controller.exception.UserNotFoundException;
 import com.application.user.documents.User;
-import com.application.user.mapper.UserMapper;
+import com.application.user.mapper.UserMethodMapperMapStruct;
 import com.application.user.repo.UserRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +21,10 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
-	private UserMapper userMapper;
+	private UserMethodMapperMapStruct userMapper;
 
 	@Autowired
-	private UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+	private UserServiceImpl(UserRepository userRepository, UserMethodMapperMapStruct userMapper) {
 		this.userRepository = userRepository;
 		this.userMapper = userMapper;
 	}
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
 		}
 		User u = fromUserRequest(userRequest, uuid);
 		User saved = userRepository.save(u);
-		return userMapper.toDto(saved);
+		return userMapper.toUserDto(saved);
 	}
 
 	public List<UserDTO> createAListOfUser(List<UserRequest> userRequestList, List<String> uuidList) {
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 		userToSave.setName(name);
 		userToSave.setEmail(email);
 		userRepository.save(userToSave);
-		return userMapper.toDto(userToSave);
+		return userMapper.toUserDto(userToSave);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 	public UserDTO getUserByTransactionId(String transactionID) {
 		log.info("Dentro il service di get user");
 
-		return userRepository.findFirstByUserId(transactionID).map(u -> userMapper.toDto(u))
+		return userRepository.findFirstByUserId(transactionID).map(u -> userMapper.toUserDto(u))
 				.orElseThrow(() -> new UserNotFoundException(transactionID));
 
 	}
