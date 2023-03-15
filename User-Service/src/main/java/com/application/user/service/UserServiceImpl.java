@@ -21,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
+	@Autowired
 	private UserMethodMapperMapStruct userMapper;
 
 	@Autowired
@@ -76,7 +77,7 @@ public class UserServiceImpl implements UserService {
 
 		User user = userRepository.findFirstByUserId(transactionId)
 				.orElseThrow(() -> new UserNotFoundException(transactionId));
-		userRepository.deleteUserByUserId(user.getTransactionId());
+		userRepository.deleteUserByUserId(user.getUserId());
 		return true;
 	}
 
@@ -90,7 +91,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private User fromUserRequest(UserRequest userRequest, String uuid) {
-		return User.builder().name(userRequest.getName()).transactionId(uuid).email(userRequest.getEmail()).build();
+		return User.builder().name(userRequest.getName()).userId(uuid).email(userRequest.getEmail()).build();
 	}
 
 	private Boolean isEmailValid(String email) {
