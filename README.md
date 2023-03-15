@@ -1,7 +1,7 @@
 # ms-architecture-springmvc
 Leveraging cutting-edge technologies such as the Spring MVC framework, microservice architecture, MongoDB, API-Cloud Gateway, Sleuth, Zipkin, Spring Security, and Eureka
 
-#Services
+# Services
 The application consists of the following microservices:
 
 Api-Cloud-Gateway
@@ -12,7 +12,7 @@ Product-Service
 Service-Registry (Eureka)
 User-Service
 
-#Technologies & Dependencies
+# Technologies & Dependencies
 The following technologies and dependencies are used in this project:
 
 Spring Boot: The foundation for building production-ready Spring applications
@@ -26,7 +26,7 @@ Okta: User management and authentication provider
 Lombok: A library to reduce boilerplate code in Java applications
 Spring Boot Test: A testing framework for Spring Boot applications
 
-#How to Run the Application
+# How to Run the Application
 Prerequisites
 Java 11 or higher
 Maven
