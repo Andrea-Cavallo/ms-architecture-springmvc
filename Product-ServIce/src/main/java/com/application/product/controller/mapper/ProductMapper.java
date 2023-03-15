@@ -9,6 +9,8 @@ import com.application.product.documents.Product;
 
 @Component
 public class ProductMapper {
+	
+	//TODO : use MapStruct
 
 	public ProductDto toDto(Product product) {
 		ProductDto dto = new ProductDto();

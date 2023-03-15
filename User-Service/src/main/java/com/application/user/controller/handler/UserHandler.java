@@ -35,7 +35,7 @@ public class UserHandler {
 			UserRequest userRequest = (UserRequest) requestData;
 			return createUser(userRequest);
 		case CREATE_USER_LIST:
-			List<UserRequest> userRequestList = (List<UserRequest>) requestData;
+			@SuppressWarnings("unchecked") List<UserRequest> userRequestList = (List<UserRequest>) requestData;
 			return createUserList(userRequestList);
 		case GET_USER:
 			return getAUser(transactionId);
@@ -52,7 +52,6 @@ public class UserHandler {
 	private ResponseEntity<RestResponse<UserDTO>> createUser(UserRequest userRequest) {
 		try {
 			log.info("Dentro l handler di Create User");
-
 			String uuid = UUID.randomUUID().toString();
 			RestResponse<UserDTO> restResponse = new RestResponse<>();
 			var userDto = userService.createUser(userRequest, uuid);

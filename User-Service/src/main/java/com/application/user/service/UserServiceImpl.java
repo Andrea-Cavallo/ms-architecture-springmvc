@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 			throw new InvalidEmailException();
 		}
 		log.info("Dentro il service di Update user");
-		var userToSave = userRepository.findFirstByTransactionId(transactionId)
+		var userToSave = userRepository.findFirstByUserId(transactionId)
 				.orElseThrow(() -> new UserNotFoundException(transactionId));
 		userToSave.setName(name);
 		userToSave.setEmail(email);
@@ -74,9 +74,9 @@ public class UserServiceImpl implements UserService {
 	public Boolean deleteUser(String transactionId) {
 		log.info("Dentro il service di Delete user");
 
-		User user = userRepository.findFirstByTransactionId(transactionId)
+		User user = userRepository.findFirstByUserId(transactionId)
 				.orElseThrow(() -> new UserNotFoundException(transactionId));
-		userRepository.deleteUserByTransactionId(user.getTransactionId());
+		userRepository.deleteUserByUserId(user.getTransactionId());
 		return true;
 	}
 
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 	public UserDTO getUserByTransactionId(String transactionID) {
 		log.info("Dentro il service di get user");
 
-		return userRepository.findFirstByTransactionId(transactionID).map(u -> userMapper.toDto(u))
+		return userRepository.findFirstByUserId(transactionID).map(u -> userMapper.toDto(u))
 				.orElseThrow(() -> new UserNotFoundException(transactionID));
 
 	}

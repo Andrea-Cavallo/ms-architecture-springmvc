@@ -23,6 +23,14 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public PaymentResponse doPayment(PaymentRequest paymentRequest) {
 		log.info("Recording Payment Details: {}", paymentRequest);
+		
+		PaymentMode name = paymentRequest.getPaymentMode();
+		if ( "PAYPAL".equalsIgnoreCase(name.toString())) {
+			
+			// implementa pagamento in paypal
+			payWithPaypal (paymentRequest);
+		}
+		
 
 		TransactionDetails transactionDetails = TransactionDetails.builder().paymentDate(Instant.now())
 				.paymentMode(paymentRequest.getPaymentMode().name()).paymentStatus("SUCCESS")
@@ -47,5 +55,10 @@ public class PaymentServiceImpl implements PaymentService {
 				.paymentMode(PaymentMode.valueOf(transactionDetails.getPaymentMode()))
 				.paymentDate(transactionDetails.getPaymentDate()).orderId(transactionDetails.getOrderId())
 				.status(transactionDetails.getPaymentStatus()).amount(transactionDetails.getAmount()).build();
+	}
+	
+	private void payWithPaypal(PaymentRequest paymentRequest) {
+		
+		
 	}
 }

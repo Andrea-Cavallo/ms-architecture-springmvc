@@ -9,8 +9,8 @@ import com.application.user.documents.User;
 
 public interface UserRepository extends MongoRepository<User, ObjectId> {
 
-	Optional<User> findFirstByTransactionId(String transactionId);
+	Optional<User> findFirstByUserId(String userId);
 
-	void deleteUserByTransactionId(String transactionId);
+	void deleteUserByUserId(String userId);
 
 }

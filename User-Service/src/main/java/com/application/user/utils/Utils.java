@@ -45,6 +45,7 @@ public class Utils {
 		return Objects.isNull(o) ? null : o.toString();
 	}
 
+	@SuppressWarnings("unchecked")
 	static Map<String, Object> mapValue(Object o) {
 		if (Objects.isNull(o))
 			return new HashMap<>();
