@@ -1,7 +1,7 @@
-# ms-architecture-springmvc
+# INTRO
 Leveraging cutting-edge technologies such as the Spring MVC framework, microservice architecture, MongoDB, API-Cloud Gateway, Sleuth, Zipkin, Spring Security, and Eureka
 
-# Services
+# SERVICES
 The application consists of the following microservices:
 
 Api-Cloud-Gateway
@@ -12,7 +12,15 @@ Product-Service
 Service-Registry (Eureka)
 User-Service
 
-# Technologies & Dependencies
+
+# CIRCUITBREAKER
+Reliability Patterns
+
+Circuit breaker — A circuit breaker can be used to protect cross-service calls. 
+When a certain number of downstream resource requests fail to meet a certain threshold, a circuit breaker opens. The system will quickly fail if the circuit breaker is open. A
+fter some time, the client will send some requests to check whether the downstream service has been restored. The request will be sent again once the health is restored if there is a normal response.
+
+# TECHNOLOGIES & DEPENDENCIES
 The following technologies and dependencies are used in this project:
 
 Spring Boot: The foundation for building production-ready Spring applications
@@ -26,44 +34,7 @@ Okta: User management and authentication provider
 Lombok: A library to reduce boilerplate code in Java applications
 Spring Boot Test: A testing framework for Spring Boot applications
 
-# How to Run the Application
-Prerequisites
-Java 11 or higher
-Maven
-MongoDB
 
 
-git clone https://github.com/Andrea-Cavallo/ms-architecture-springmvc.git
-cd online-marketplace-platform
 
-Start the MongoDB instance.
-mongod
 
-Start the Service-Registry (Eureka).
-bash
-
-cd service-registry
-mvn spring-boot:run
-Start the Config-Server.
-
-cd config-server
-mvn spring-boot:run
-
-Start the remaining microservices (Order-Service, Payment-Service, Product-Service, and User-Service).
-cd order-service
-mvn spring-boot:run
-
-cd payment-service
-mvn spring-boot:run
-
-cd product-service
-mvn spring-boot:run
-
-cd user-service
-mvn spring-boot:run
-
-Finally, start the Api-Cloud-Gateway.
-
-cd api-cloud-gateway
-mvn spring-boot:run
-The application is now running, and you can access the API endpoints through the Api-Cloud-Gateway at http://localhost:8080.
