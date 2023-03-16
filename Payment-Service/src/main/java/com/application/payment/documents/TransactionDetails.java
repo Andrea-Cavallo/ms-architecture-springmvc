@@ -30,5 +30,5 @@ public class TransactionDetails {
 
 	private String paymentStatus;
 
-	private Long amount;
+	private Double amount;
 }

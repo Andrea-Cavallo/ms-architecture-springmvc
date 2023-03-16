@@ -19,7 +19,7 @@ public class PaymentResponse implements Dto {
 	private String paymentId;
 	private String status;
 	private PaymentMode paymentMode;
-	private Long amount;
+	private Double amount;
 	private Instant paymentDate;
 	private Long orderId;
 }

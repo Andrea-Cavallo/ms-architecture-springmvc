@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class PaymentRequest {
 
 	private Long orderId;
-	private Long amount;
+	private Double amount;
 	private String referenceNumber;
 	private PaymentMode paymentMode;
 
